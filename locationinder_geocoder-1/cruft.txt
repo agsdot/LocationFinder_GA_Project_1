@@ -1,0 +1,45 @@
+<%= Location.first.distance_to('Oakland') %>
+<%= Location.all.select.distance_to(params[:search]) %>
+
+<table>
+  <tr>
+    <th>Address</th>
+
+    <th><%= "Distance from #{params[:search]}" %></th>
+    <th></th>
+  </tr>
+
+<% @locations.each do |location| %>
+
+  <tr>
+    <td><%= location.address %></td>
+    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]) : "0" %></td>
+     <!--  <p> <%= link_to 'Show', location %> -->
+    <td><a href="locations/<%= location.id %>?q=<%= params[:search] %>">Show</a>
+</td>
+
+<% end %>
+</table>
+
+
+from home erb originall
++++
+<h1>Listing locations</h1>
+<p>Params: <%= params[:search] %></p>
+<%= form_tag '/location/:id',:method => :get do %>
+<p>
+  <%= text_field_tag :search, params[:q] %>
+  <%= submit_tag "Lucky", :name => 'lucky' %>
+
+</p>
+<% end %>
+
+<p>Notes
+<form action="/search" method="get">
+  <input type="search" name="q" value="<%= @query %>" autofocus placeholder="Enter a movie title">
+  <button name="button" value="search">Search</button>
+  <button name="button" value="lucky">I'm Feeling Lucky!</button>
+</form>
+++++
+
+

@@ -2,20 +2,27 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
 
-  attr_accessor :obj
+
   def index
-    if params[:search].present?
-      @obj = params[:search]
-      @locations = Location.near(params[:search], 500, :order => :distance)
-    else
-      @locations = Location.all
-    end
+
+    @location = Location.near(params[:search], 500, :order => :distance).first
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locations }
     end
   end
+
+  def home
+
+    @location = Location.near(params[:search], 500, :order => :distance).first
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @locations }
+    end
+  end
+
 
   # GET /locations/1
   # GET /locations/1.json

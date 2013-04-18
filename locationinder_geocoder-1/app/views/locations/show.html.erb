@@ -45,7 +45,7 @@
   <!--    ["steps"][0]["html_instructions"] -->
 <ul>
 <% @directions["steps"].each do |direction| %>
-    <li><%= direction["html_instructions"] %></p>
+    <li><%= direction["html_instructions"].html_safe %></p>
     <hr>
 <% end %>
 </ul>
