@@ -69,7 +69,7 @@ Use that location for the search
 -->
 
 <p><b>Distance</b>
-<%= @location.distance_to(params[:search]) %>  
+<%= @location.distance_to(params[:search]).round(2) %>  
 </p>
 
 
@@ -84,7 +84,9 @@ Use that location for the search
   <!--    ["steps"][0]["html_instructions"] -->
 <ul>
 <% @results["routes"][0]["legs"][0]["steps"].each do |direction| %>
-    <li><%= direction["html_instructions"].html_safe %></p>
+    <li><%= direction["html_instructions"].html_safe %> for 
+    <%= direction["distance"]["text"].html_safe %></p>
+      
     <hr>
 <% end %>
 </ul>
@@ -98,7 +100,7 @@ Use that location for the search
 
 <p>Driving Map</p>
 <p>test</p>
-<p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;output=embed"></iframe><br /></p>
+<p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
 
 <p>
 
@@ -117,7 +119,7 @@ Use that location for the search
     <% if !location.address.include? @location.address %>
     <td><%= location.address %></td>
     
-    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]) : "0" %></td> 
+    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]).round(2) : "0" %></td> 
 <!--    <td><%= location.distance_to(params[:search]) %></td> -->
 
     <td><a href="locations/<%= location.id %>?q=<%= params[:search] %>">Show</a></td>
