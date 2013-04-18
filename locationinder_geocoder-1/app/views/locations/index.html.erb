@@ -1,108 +1,43 @@
+#index
+
 <h1>Listing locations</h1>
- <%= form_tag locations_path,:method => :get do %>
+<p><%= params[:search] %></p>
+<%= form_tag locations_path,:method => :get do %>
 <p>
   <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => 'button' %>
-<!--  <%= submit_tag "Lucky", :name => 'button' %> -->
+  <%= submit_tag "Search for Locations", :name => nil %>
 </p>
 <% end %>
- <% if @location %>
 
-<!--
-<%= Location.inspect %><p>
-<%= Location.all.inspect %><p>
-<%= Location.last.distance_to('Oakland') %>
-
-
- select
-map -->
-
-
-
-
-<!--
-<%= @locations.inspect %>
-<%= @locations.as_json %>
-<%= @locations.methods %>
- convert to json the Locations array/hash
-go thru each, and select the one with the shortest distance to the POINT
-select that location. and identify if so that it can be used in the hash for lcoations/1 or locations/2 or locations/1?q=POINTOFINTEREST
-Use that location for the search
- -->
-<!--<p><%= params[:search] %></p> -->
-
-<!--
 <table>
   <tr>
     <th>Address</th>
     <th>Latitude</th>
     <th>Longitude</th>
-    <th><%= "Distance from #{params[:search]}" %></th>
+  <!--  <th><%= "Distance from #{params[:search]}" %></th>  -->
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-
+<% @locations.each do |location| %>
   <tr>
-    <td><%= @location.address %></td>
-    <td><%= @location.latitude %></td>
-    <td><%= @location.longitude %></td>
-    <td><%= @location.distance_to(params[:search]) > 0 ?  @location.distance_to(params[:search]) : "0" %></td>
+    <td><%= location.address %></td>
+    <td><%= location.latitude %></td>
+    <td><%= location.longitude %></td>
+<!--    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]) : "0" %></td>
 
 
-      <p> <%= link_to 'Show', @location %>
-    <td><a href="locations/<%= @location.id %>?q=<%= params[:search] %>">Show</a>
-</td>
-    <td><%= link_to 'Edit', edit_location_path(@location) %></td>
-    <td><%= link_to 'Destroy', @location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><a href="locations/<%= location.id %>?q=<%= params[:search] %>">Show</a>
+</td> -->
+    <td> <%= link_to 'Show', location %></td>
+
+    <td><%= link_to 'Edit', edit_location_path(location) %></td>
+    <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+<% end %>
 </table>
 
 <br />
-<%= params.inspect %>
-<br>
 
 <%= link_to 'New Location', new_location_path %>
-
-
--->
-
-<p><b>Distance</b>
-<%= @location.distance_to(params[:search]) %>  
-</p>
-
-
-
-
-
-
-<p><b>Directions</b></p>
-<%  file = open("http://maps.googleapis.com/maps/api/directions/json?origin=#{URI.escape(params[:search])}&destination=#{URI.escape(@location.address)}&sensor=true") %>
-  <% @results = JSON.load(file.read) %>
-<!--<%= @directions = @results["routes"][0]["legs"][0] %> -->
-  <!--    ["steps"][0]["html_instructions"] -->
-<ul>
-<% @results["routes"][0]["legs"][0]["steps"].each do |direction| %>
-    <li><%= direction["html_instructions"].html_safe %></p>
-    <hr>
-<% end %>
-</ul>
-
-
-<p>Map of <%= @location.address %></p>
-<p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
-
-
-
-
-<p>Driving Map</p>
-<p>test</p>
-<p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=5&amp;output=embed"></iframe><br /></p>
-
-
-
-
-<% end %>
-
-

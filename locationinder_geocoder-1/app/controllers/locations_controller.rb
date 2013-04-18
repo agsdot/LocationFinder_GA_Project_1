@@ -4,18 +4,24 @@ class LocationsController < ApplicationController
 
 
   def index
-
-    @location = Location.near(params[:search], 500, :order => :distance).first
+    if params[:search].present?
+      @obj = params[:search]
+      @locations = Location.near(params[:search], 500, :order => :distance)
+    else
+      @locations = Location.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locations }
     end
+
   end
 
   def home
 
     @location = Location.near(params[:search], 500, :order => :distance).first
+    @locationlist = Location.near(params[:search], 500, :order => :distance)
 
     respond_to do |format|
       format.html # index.html.erb

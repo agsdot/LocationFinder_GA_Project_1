@@ -1,11 +1,10 @@
+# show
+
 <p id="notice"><%= notice %></p>
 <!--<%= params.inspect %>
 <%= params[:q].inspect %>
 
   <%= @location.inspect %> -->
-<p><b>Distance</b>
-<%= @location.distance_to(params[:q]) %>  
-</p>
 
 <p>
   <b>Address:</b>
@@ -25,9 +24,6 @@
 
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
 
-<p>test</p>
-<p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:q] %>&amp;hl=en&amp;output=embed"></iframe><br /></p>
-
 
 <h3>Nearby</h3>
 <ul>
@@ -37,17 +33,5 @@
 </ul>
 
 
-<p><b>Directions</b></p>
-<%  file = open("http://maps.googleapis.com/maps/api/directions/json?origin=#{URI.escape(params[:q])}&destination=#{URI.escape(@location.address)}&sensor=true") %>
-  <% @results = JSON.load(file.read) %>
-<!--<%= @directions = @results["routes"][0]["legs"][0] %> -->
-<p>----------</p>
-  <!--    ["steps"][0]["html_instructions"] -->
-<ul>
-<% @directions["steps"].each do |direction| %>
-    <li><%= direction["html_instructions"].html_safe %></p>
-    <hr>
-<% end %>
-</ul>
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
