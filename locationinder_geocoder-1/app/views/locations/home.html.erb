@@ -2,10 +2,22 @@
  <%= form_tag root_path,:method => :get do %>
 <p>
   <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => 'button' %>
+<!--  <%= submit_tag "Search", :name => 'button' %>  -->
+  <%= submit_tag "Search", :name => 'button' , :class => "btn btn-success" %>
+
 <!--  <%= submit_tag "Lucky", :name => 'button' %> -->
 </p>
 <% end %>
+
+
+<!--
+<%= text_field_tag 'username', nil, :class => 'inputBox' %>
+
+:class => 'resizedTextbox',
+
+class="resizedTextbox"
+-->
+
  <% if @location %>
 
 <!--
@@ -92,6 +104,8 @@ Use that location for the search
 </ul>
 
 
+
+
 <p>Map of <%= @location.address %></p>
 <p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
 
@@ -101,9 +115,6 @@ Use that location for the search
 <p>Driving Map</p>
 <p>test</p>
 <p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
-
-<p>
-
 
 
 <p>Nearby Locations</p>
@@ -120,9 +131,12 @@ Use that location for the search
     <td><%= location.address %></td>
     
     <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]).round(2) : "0" %></td> 
-<!--    <td><%= location.distance_to(params[:search]) %></td> -->
+    <td><%= location.distance_to(params[:search]) %></td> 
 
-    <td><a href="locations/<%= location.id %>?q=<%= params[:search] %>">Show</a></td>
+
+
+    <td><a href="http://localhost:3000/?utf8=%E2%9C%93&search=<%= params[:search] %>&button=Search">Show</a></td>
+
 
 
   </tr>

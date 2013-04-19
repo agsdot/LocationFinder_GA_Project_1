@@ -43,3 +43,41 @@ from home erb originall
 ++++
 
 
+
+<p><% a = Location.near(params[:search], 500, :order => :distance) %></p>
+
+
+<p><%= a.inspect %></p>
+
+<p><%= a.first %></p>
+
+<p><%= a.first.address %></p>
+
+<p>+++</p>
+
+<p><%= Location.near(params[:search], 500, :order => :distance).pop %></p>
+<p><%= Location.near(params[:search], 500, :order => :distance).length %></p>
+
+<p><%= Location.near(params[:search], 500, :order => :distance).inspect %></p>
+
+<p><%= Location.near(params[:search], 500, :order => :distance).first %></p>
+
+<p><%= Location.near(params[:search], 500, :order => :distance).first.address %></p>
+
+<!-- while Location.near(params[:search], 500, :order => :distance).length > 0
+ -->
+
+ 
+<p><% a = Location.near(params[:search], 500, :order => :distance) %></p>
+<p><%= a.first.address %></p>
+
+<p><%= a.length %></p>
+
+<p><%= a.pop %></p>
+
+<p><%= a.length %></p>
+
+<p><%= a.first.address %></p>
+
+<!-- while Location.near(params[:search], 500, :order => :distance).length > 0
+ -->

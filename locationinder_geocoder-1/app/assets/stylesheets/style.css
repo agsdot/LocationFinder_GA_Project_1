@@ -27,7 +27,7 @@ body {
 
 
 
-.resizedTextbox {width: 500px; height: 20px}
+#search {width: 500px; height: 20px}
 
 .btn {
 	margin-top: -10px;
