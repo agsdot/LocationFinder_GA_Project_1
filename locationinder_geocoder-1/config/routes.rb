@@ -56,6 +56,12 @@ Geocoder1::Application.routes.draw do
 
   root :to => 'locations#home'
 
+  post '/send_email' => 'locations#send_email'
+
+
+#  post '/send_email'
+ 
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

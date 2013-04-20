@@ -2,111 +2,39 @@
  <%= form_tag root_path,:method => :get do %>
 <p>
   <%= text_field_tag :search, params[:search] %>
-<!--  <%= submit_tag "Search", :name => 'button' %>  -->
   <%= submit_tag "Search", :name => 'button' , :class => "btn btn-success" %>
 
-<!--  <%= submit_tag "Lucky", :name => 'button' %> -->
 </p>
 <% end %>
-
-
-<!--
-<%= text_field_tag 'username', nil, :class => 'inputBox' %>
-
-:class => 'resizedTextbox',
-
-class="resizedTextbox"
--->
 
  <% if @location %>
 
-<!--
-<%= Location.inspect %><p>
-<%= Location.all.inspect %><p>
-<%= Location.last.distance_to('Oakland') %>
-
-
- select
-map -->
-
-
-
-
-<!--
-<%= @locations.inspect %>
-<%= @locations.as_json %>
-<%= @locations.methods %>
- convert to json the Locations array/hash
-go thru each, and select the one with the shortest distance to the POINT
-select that location. and identify if so that it can be used in the hash for lcoations/1 or locations/2 or locations/1?q=POINTOFINTEREST
-Use that location for the search
- -->
-<!--<p><%= params[:search] %></p> -->
-
-<!--
-<table>
-  <tr>
-    <th>Address</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th><%= "Distance from #{params[:search]}" %></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-
-  <tr>
-    <td><%= @location.address %></td>
-    <td><%= @location.latitude %></td>
-    <td><%= @location.longitude %></td>
-    <td><%= @location.distance_to(params[:search]) > 0 ?  @location.distance_to(params[:search]) : "0" %></td>
-
-
-      <p> <%= link_to 'Show', @location %>
-    <td><a href="locations/<%= @location.id %>?q=<%= params[:search] %>">Show</a>
-</td>
-    <td><%= link_to 'Edit', edit_location_path(@location) %></td>
-    <td><%= link_to 'Destroy', @location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-</table>
-
-<br />
-<%= params.inspect %>
-<br>
-
-<%= link_to 'New Location', new_location_path %>
-
-
--->
-
 <p><b>Distance</b>
-<%= @location.distance_to(params[:search]).round(2) %>  
+
+<%= render 'common/distance' %>
+
 </p>
 
-
-
-
-
-
 <p><b>Directions</b></p>
-<%  file = open("http://maps.googleapis.com/maps/api/directions/json?origin=#{URI.escape(params[:search])}&destination=#{URI.escape(@location.address)}&sensor=true") %>
-  <% @results = JSON.load(file.read) %>
-<!--<%= @directions = @results["routes"][0]["legs"][0] %> -->
-  <!--    ["steps"][0]["html_instructions"] -->
-<ul>
-<% @results["routes"][0]["legs"][0]["steps"].each do |direction| %>
-    <li><%= direction["html_instructions"].html_safe %> for 
-    <%= direction["distance"]["text"].html_safe %></p>
-      
-    <hr>
-<% end %>
+<%= render 'common/directions' %>
 </ul>
 
 
+<h1>
+Yo <code>\o/</code> 1337
+</h1>
+<p>Email</p>
+<form action='/send_email' method='post'>
+  <div><input type='email' name='to' placeholder='Send to yo friend(email address)'></div>
+  <div><input type='text' name='subject' placeholder='Yo subject'></div>
+  <div><input type='hidden' name="search" value="<%= params[:search] %>"></div>
+
+  <div><%= text_area_tag(:body , "", :placeholder => 'Enter yo message') %></div>
+  <div><%= submit_tag 'Send yo email, dawggg!!!' %></div>
+</form>
 
 
-<p>Map of <%= @location.address %></p>
+<p>Map of <%= render 'common/address' %></p>
 <p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
 
 

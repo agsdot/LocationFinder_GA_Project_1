@@ -13,8 +13,21 @@ Geocoder1::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  # Do care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+    #midwife of methods, tell actionmailer it will raise errors and actually send emails, in dev env typically set false, but we override it.
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587, #secure email port
+    :domain => 'mysiteagsdot.com', #domain name of website, or any domain
+    :user_name => 'jonathanlai',
+    :password => ENV['GMAIL_PASSWORD'], # GMAIL_PASSWORD=*passwordtypedout*** rails server when you start it
+    :authentication =>'plain' ,
+    :enable_starttls_auto => true,
+  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

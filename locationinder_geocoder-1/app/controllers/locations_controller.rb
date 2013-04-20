@@ -23,10 +23,24 @@ class LocationsController < ApplicationController
     @location = Location.near(params[:search], 500, :order => :distance).first
     @locationlist = Location.near(params[:search], 500, :order => :distance)
 
+    @search = params[:search]
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locations }
     end
+  end
+
+  def send_email
+    @search = params[:search]
+    @location = Location.near(@search, 500, :order => :distance).first
+                #nearest location in database
+    @to = params[:to]
+    @subject = params[:subject]
+#    @body = params[:body].to_s + params[:search].to_s
+    @body = params[:body]
+
+    YoMailer.form_email(params[:to], params[:subject], @body, @search).deliver    
   end
 
 
