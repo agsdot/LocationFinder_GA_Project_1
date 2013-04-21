@@ -1,21 +1,31 @@
+<% if @location %>
+  <div class="query">      
+<% else %>
+  <div class="noquery">    
+<% end %>
+
 <h1>Listing locations</h1>
  <%= form_tag root_path,:method => :get do %>
 <p>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search", :name => 'button' , :class => "btn btn-success" %>
-
 </p>
 <% end %>
+</div>
+
 
  <% if @location %>
 
-<p><b>Distance</b>
 
+<div id="bodycontent">
+<div id="georesults">
+<p class="distance"><b>Distance</b></p>
+
+<p>
 <%= render 'common/distance' %>
-
 </p>
 
-<p><b>Directions</b></p>
+<p class="directions"><b>Directions</b></p>
 <%= render 'common/directions' %>
 </ul>
 
@@ -33,7 +43,11 @@ Yo <code>\o/</code> 1337
   <div><%= submit_tag 'Send yo email, dawggg!!!' %></div>
 </form>
 
+</div>
 
+
+
+<div id="geoimages">
 <p>Map of <%= render 'common/address' %></p>
 <p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
 
@@ -42,7 +56,7 @@ Yo <code>\o/</code> 1337
 
 <p>Driving Map</p>
 <p>test</p>
-<p><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
+<p><iframe width="415" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
 
 
 <p>Nearby Locations</p>
@@ -70,7 +84,11 @@ Yo <code>\o/</code> 1337
   </tr>
  <% end %>
  <% end %>
+
 </table>
+
+</div>
+</div>
 
 
 

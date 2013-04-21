@@ -1,20 +1,85 @@
-
-
-
 /*div {
-	border: solid;
-}
-*/
-* {
-	font-family: 'Noto Sans', sans-serif;
-
-}
+  border: dashed;
+}*/
 
 body {
-  background-color: #006699;
-  margin: 0;
+/*  background-color: #006699;
+*/  margin: 0;
   padding: 0;
 }
+
+body, html {
+height: 100%;
+width: 100%; 
+} 
+
+
+#gmap{
+height: 100%;
+left: 0;
+position: fixed; /* !important;  Acts in pretty much the same way as background-attachment: fixed for an image background. Has to be !important only if you're using the Google Maps API. */
+top: 0;
+width: 100%;
+z-index: 14; } /* Has to be at least one increment smaller in value than the container's z-index */
+
+#outer-container{
+/*background: rgba(0, 0, 0, 0.8);*/
+border-radius: 20px;
+/*border: 1px dotted #fff;*/
+/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
+margin: 0 auto;
+overflow: visible; /*!important;  Has to be !important only if you're using an on/off switch */
+/*padding: 40px;*/
+position: absolute;
+top: 50px;
+/*margin-bottom: 100px;
+*/
+/*bottom: 100px;*/
+width: 1100px;
+z-index: 15; /* Has to be at least one increment larger in value than the Google Maps iframe z-index */
+
+
+        left:0;
+        right:0;
+        margin-left:auto;
+        margin-right:auto;
+
+}
+
+
+#inner-container {
+  border-radius: 20px;
+
+  background-color: #FFFFCC;
+/*  right: 20px;
+*/  bottom: 0px;
+  box-shadow: 0px 0px 50px #999;
+  overflow: scroll;
+  /*padding: 30px;*/
+/*  position: absolute;
+*/  top: 0px;
+  /*width: 1100px;*/
+  margin-bottom: 100px;
+}
+
+
+.noquery {
+  text-align: center;
+  margin-top: 170px;
+  margin-bottom: 300px;
+}
+
+.query {
+  text-align: center;
+}
+
+
+#outer-container .noquery {
+  margin-top: 250px;
+
+
+}
+
 
 .center {
 	text-align: center;
@@ -26,30 +91,14 @@ body {
 }
 
 
-
-#search {width: 500px; height: 20px}
+#search {width: 500px;
+  height: 20px;
+}
 
 .btn {
 	margin-top: -10px;
 }
 
-#outer-container {
-  margin: auto;
-  width: 1100px;
-}
-
-
-#inner-container {
-  background-color: #FFFFCC;
-/*  right: 20px;
-*/  bottom: 0px;
-  box-shadow: 0px 0px 50px #999;
-  overflow: scroll;
-  padding: 30px;
-/*  position: absolute;
-*/  top: 0px;
-  /*width: 1100px;*/
-}
 
 #bodycontent {
 /*  background-color: blue;*/
@@ -59,18 +108,21 @@ body {
 }
 
 #georesults {
-  box-sizing: border-box;
+  border-radius: 10px;
+  /*box-sizing: border-box;*/
   width: 460px;
   background-color: white;
   position: absolute;
   top: 0;
   right: 0;
 
+
 }
 
 #geoimages {
+  border-radius: 10px;
 /* background-color: yellow;
-*/  background-color: white;
+*/background-color: white;
   margin-right: 470px;
   padding: 20px;
   bottom: 0px;
