@@ -1,17 +1,4 @@
-<% if @location %>
-  <div class="query">      
-<% else %>
-  <div class="noquery">    
-<% end %>
-
-<h1>Listing locations</h1>
- <%= form_tag root_path,:method => :get do %>
-<p>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search", :name => 'button' , :class => "btn btn-success" %>
-</p>
-<% end %>
-</div>
+<%= render 'common/searchbar' %>
 
 
  <% if @location %>

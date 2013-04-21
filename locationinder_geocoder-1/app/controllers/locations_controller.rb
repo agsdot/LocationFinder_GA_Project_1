@@ -22,6 +22,7 @@ class LocationsController < ApplicationController
 
     @location = Location.near(params[:search], 500, :order => :distance).first
     @locationlist = Location.near(params[:search], 500, :order => :distance)
+    @locationsall =  Location.all
 
     @search = params[:search]
 
