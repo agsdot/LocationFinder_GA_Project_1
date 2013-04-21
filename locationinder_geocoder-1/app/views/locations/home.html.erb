@@ -19,28 +19,27 @@
 
 <div id="bodycontent">
 <div id="georesults">
-<p class="distance"><b>Distance</b></p>
 
-<p>
-<%= render 'common/distance' %>
-</p>
 
+<br>
 <p class="directions"><b>Directions</b></p>
-<%= render 'common/directions' %>
-</ul>
+<p><%= render 'common/directions' %></p>
 
+<br>
 
-<h1>
-Yo <code>\o/</code> 1337
-</h1>
-<p>Email</p>
+<p class="distance"><b>Distance</b></p>
+<p class="marginleftindent">     <%= render 'common/distance' %> miles</p>
+
+<br>
+
+ <p class="email"><b>Email me a reminder</b></p>
 <form action='/send_email' method='post'>
-  <div><input type='email' name='to' placeholder='Send to yo friend(email address)'></div>
-  <div><input type='text' name='subject' placeholder='Yo subject'></div>
+  <div class="styleindent"><input type='email' name='to' placeholder='email address'></div>
+  <div class="styleindent"><input type='text' name='subject' placeholder='Yo subject'></div>
   <div><input type='hidden' name="search" value="<%= params[:search] %>"></div>
 
-  <div><%= text_area_tag(:body , "", :placeholder => 'Enter yo message') %></div>
-  <div><%= submit_tag 'Send yo email, dawggg!!!' %></div>
+  <div class="styleindent"><%= text_area_tag(:body , "", :placeholder => 'Enter your message') %></div>
+  <div  class="styleindent"><%= submit_tag 'Send' %></div>
 </form>
 
 </div>
@@ -48,44 +47,20 @@ Yo <code>\o/</code> 1337
 
 
 <div id="geoimages">
-<p>Map of <%= render 'common/address' %></p>
-<p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false" %>
+<p class="destinationmap">GA Location</p>
+<p><%= render 'common/address' %></p>
+<p><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude}%2C#{@location.longitude}&zoom=14&size=400x400&sensor=false", :class => "roundedcorners" %>
 
 
+<br>
+<br>
+
+<p class="origindestinationmap">Driving Map</p>
+<!-- w h
+425 350 original -->
+<p><iframe class="roundedcorners" width="435" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
 
 
-<p>Driving Map</p>
-<p>test</p>
-<p><iframe width="415" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=<%= @location.address %>&amp;daddr=<%= params[:search] %>&amp;hl=en&amp;z=6&amp;output=embed"></iframe><br /></p>
-
-
-<p>Nearby Locations</p>
-<table>
-  <tr>
-    <th>Address</th>
-    <th><%= "Distance from #{params[:search]}" %></th>
-    <th></th>
-  </tr>
-
-<% @locationlist.each do |location| %>
-  <tr>
-    <% if !location.address.include? @location.address %>
-    <td><%= location.address %></td>
-    
-    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]).round(2) : "0" %></td> 
-    <td><%= location.distance_to(params[:search]) %></td> 
-
-
-
-    <td><a href="http://localhost:3000/?utf8=%E2%9C%93&search=<%= params[:search] %>&button=Search">Show</a></td>
-
-
-
-  </tr>
- <% end %>
- <% end %>
-
-</table>
 
 </div>
 </div>

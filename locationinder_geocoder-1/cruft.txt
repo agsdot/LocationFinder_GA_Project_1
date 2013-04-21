@@ -81,3 +81,37 @@ from home erb originall
 
 <!-- while Location.near(params[:search], 500, :order => :distance).length > 0
  -->
+
+
+
+ ++++
+ closest locations with the exception of the first result
+
+ <!-- <p>Nearby Locations</p>
+<table>
+  <tr>
+    <th>Address</th>
+    <th><%= "Distance from #{params[:search]}" %></th>
+    <th></th>
+  </tr>
+
+<% @locationlist.each do |location| %>
+  <tr>
+    <% if !location.address.include? @location.address %>
+    <td><%= location.address %></td>
+    
+    <td><%= location.distance_to(params[:search]) > 0 ?  location.distance_to(params[:search]).round(2) : "0" %></td> 
+    <td><%= location.distance_to(params[:search]) %></td> 
+
+
+
+    <td><a href="http://localhost:3000/?utf8=%E2%9C%93&search=<%= params[:search] %>&button=Search">Show</a></td>
+
+
+
+  </tr>
+ <% end %>
+ <% end %>
+
+</table>
+ -->
