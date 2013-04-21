@@ -1,7 +1,7 @@
 /*div {
   border: dashed;
-}*/
-
+}
+*/
 body {
 /*  background-color: #006699;
 */  margin: 0;
@@ -22,7 +22,7 @@ top: 0;
 width: 100%;
 z-index: 14; } /* Has to be at least one increment smaller in value than the container's z-index */
 
-#outer-container{
+#outer-container-query , #outer-container{
 /*background: rgba(0, 0, 0, 0.8);*/
 border-radius: 20px;
 /*border: 1px dotted #fff;*/
@@ -30,11 +30,34 @@ border-radius: 20px;
 margin: 0 auto;
 overflow: visible; /*!important;  Has to be !important only if you're using an on/off switch */
 /*padding: 40px;*/
-top: 50px;
+top: 25px;
 /*margin-bottom: 100px;
 */
 /*bottom: 100px;*/
 width: 1050px;
+z-index: 15; /* Has to be at least one increment larger in value than the Google Maps iframe z-index */
+
+position: absolute;
+left:0;
+right:0;
+margin-left:auto;
+margin-right:auto;
+
+}
+
+#outer-container-noquery{
+/*background: rgba(0, 0, 0, 0.8);*/
+border-radius: 20px;
+/*border: 1px dotted #fff;*/
+/*box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);*/
+margin: 0 auto;
+overflow: visible; /*!important;  Has to be !important only if you're using an on/off switch */
+/*padding: 40px;*/
+top: 25px;
+/*margin-bottom: 100px;
+*/
+/*bottom: 100px;*/
+width: 700px;
 z-index: 15; /* Has to be at least one increment larger in value than the Google Maps iframe z-index */
 
 position: absolute;
@@ -59,6 +82,7 @@ margin-right:auto;
 */  top: 0px;
   /*width: 1100px;*/
   margin-bottom: 100px;
+
 }
 
 
@@ -92,9 +116,14 @@ margin-right:auto;
 }
 
 
-#search {width: 500px;
+#search {
+  width: 500px;
   height: 20px;
 }
+
+#geocomplete {width: 500px; height: 20px}
+
+
 
 .btn {
 	margin-top: -10px;
@@ -113,9 +142,11 @@ margin-right:auto;
   /*box-sizing: border-box;*/
   width: 460px;
   background-color: white;
-  position: absolute;
+  position: relative;
+  float: right;
   top: 0;
   right: 0;
+  margin-bottom: 45px;
 
 
 }

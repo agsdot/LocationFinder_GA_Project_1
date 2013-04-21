@@ -115,3 +115,17 @@ from home erb originall
 
 </table>
  -->
+
+ ++++
+
+
+<% if !@location %>
+<% address = Location.all.sample.address %>
+<% else %>
+<% address = "10012" %>
+<% end %>
+
++++
+
+    <li><%= if !@results["routes"][0]["legs"][0]["steps"][-1]["html_instructions"].html_safe.include? direction["distance"]["text"].html_safe : print " " %> 
+    </li> 

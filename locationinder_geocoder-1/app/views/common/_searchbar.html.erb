@@ -1,20 +1,22 @@
 <% if @location %>
-  <div class="query">      
+  <div id="outer-container-query"> <!-- make sure to close divs in application.html.erb-->
+    <div id="inner-container"> <!-- make sure to close divs in application.html.erb-->
+      <div class="query">      
 <% else %>
-  <div class="noquery">    
+  <div id="outer-container-noquery"> <!-- make sure to close divs application.html.erb-->
+    <div id="inner-container"> <!-- make sure to close divs in application.html.erb-->
+      <div class="noquery">    
 <% end %>
 
 <h1>gaMapQuery</h1>
  <%= form_tag root_path,:method => :get do %>
-<p>
   <%= text_field_tag :search, params[:search] , :id => "geocomplete"%>
   <%= submit_tag "Search", :name => 'button' , :class => "btn btn-success", :id => "find" %>
 
           <!-- <input id="find" type="button" value="find" /> -->
 
-</p>
 <% end %>
-</div>
+      </div>
 
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
